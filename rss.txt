@@ -1,0 +1,318 @@
+[
+{
+"name": "Ale Kino+",
+"link": "https://media2.pl/rss/tag/Ale-Kinoplus.xml"
+},
+{
+"name": "Vobis",
+"link": "https://media2.pl/rss/tag/vobis.xml"
+},
+{
+"name": "ITV",
+"link": "https://media2.pl/rss/tag/itv.xml"
+},
+{
+"name": "myPhone",
+"link": "https://media2.pl/rss/tag/myphone.xml"
+},
+{
+"name": "PR",
+"link": "https://media2.pl/rss/tag/pr.xml"
+},
+{
+"name": "Formuła 1",
+"link": "https://media2.pl/rss/tag/formula-1.xml"
+},
+{
+"name": "skoki narciarskie",
+"link": "https://media2.pl/rss/tag/skoki-narciarskie.xml"
+},
+{
+"name": "Polkomtel",
+"link": "https://media2.pl/rss/tag/polkomtel.xml"
+},
+{
+"name": "Windows",
+"link": "https://media2.pl/rss/tag/windows.xml"
+},
+{
+"name": "Sport",
+"link": "https://media2.pl/rss/tag/sport.xml"
+},
+{
+"name": "Microsoft",
+"link": "https://media2.pl/rss/tag/microsoft.xml"
+},
+{
+"name": "Panorama",
+"link": "https://media2.pl/rss/tag/panorama.xml"
+},
+{
+"name": "Jesień 2016",
+"link": "https://media2.pl/rss/tag/jesien-2016.xml"
+},
+{
+"name": "PR2",
+"link": "https://media2.pl/rss/tag/pr2.xml"
+},
+{
+"name": "Samsung",
+"link": "https://media2.pl/rss/tag/samsung.xml"
+},
+{
+"name": "Onet",
+"link": "https://media2.pl/rss/tag/Onet.xml"
+},
+{
+"name": "TV4",
+"link": "https://media2.pl/rss/tag/tv4.xml"
+},
+{
+"name": "blog",
+"link": "https://media2.pl/rss/tag/blog.xml"
+},
+{
+"name": "Allegro.pl",
+"link": "https://media2.pl/rss/tag/allegro.pl.xml"
+},
+{
+"name": "TVN Style",
+"link": "https://media2.pl/rss/tag/tvn-style.xml"
+},
+{
+"name": "telefonia stacjonarna",
+"link": "https://media2.pl/rss/tag/telefonia-stacjonarna.xml"
+},
+{
+"name": "telewizor",
+"link": "https://media2.pl/rss/tag/telewizor.xml"
+},
+{
+"name": "premiery",
+"link": "https://media2.pl/rss/tag/premiery.xml"
+},
+{
+"name": "VOD",
+"link": "https://media2.pl/rss/tag/vod.xml"
+},
+{
+"name": "nawigacja",
+"link": "https://media2.pl/rss/tag/nawigacja.xml"
+},
+{
+"name": "książka",
+"link": "https://media2.pl/rss/tag/ksiazka.xml"
+},
+{
+"name": "DVD",
+"link": "https://media2.pl/rss/tag/dvd.xml"
+},
+{
+"name": "Planete Plus",
+"link": "https://media2.pl/rss/tag/Planete-Plus.xml"
+},
+{
+"name": "TV Trwam",
+"link": "https://media2.pl/rss/tag/tv-trwam.xml"
+},
+{
+"name": "Android",
+"link": "https://media2.pl/rss/tag/Android.xml"
+},
+{
+"name": "lato",
+"link": "https://media2.pl/rss/tag/lato.xml"
+},
+{
+"name": "BIS",
+"link": "https://media2.pl/rss/tag/bis.xml"
+},
+{
+"name": "TLC",
+"link": "https://media2.pl/rss/tag/tlc.xml"
+},
+{
+"name": "CD",
+"link": "https://media2.pl/rss/tag/cd.xml"
+},
+{
+"name": "Radio ESKA",
+"link": "https://media2.pl/rss/tag/radio-eska.xml"
+},
+{
+"name": "spam",
+"link": "https://media2.pl/rss/tag/spam.xml"
+},
+{
+"name": "TVP Historia",
+"link": "https://media2.pl/rss/tag/tvp-historia.xml"
+},
+{
+"name": "wiosna 2019",
+"link": "https://media2.pl/rss/tag/wiosnka-2019.xml"
+},
+{
+"name": "Centernet",
+"link": "https://media2.pl/rss/tag/centernet.xml"
+},
+{
+"name": "premium TV",
+"link": "https://media2.pl/rss/tag/premium-TV.xml"
+},
+{
+"name": "EURO 2012",
+"link": "https://media2.pl/rss/tag/euro-2012.xml"
+},
+{
+"name": "Antyradio",
+"link": "https://media2.pl/rss/tag/antyradio.xml"
+},
+{
+"name": "Linux",
+"link": "https://media2.pl/rss/tag/linux.xml"
+},
+{
+"name": "Kuchnia Polska",
+"link": "https://media2.pl/rss/tag/Kuchnia-Polska.xml"
+},
+{
+"name": "YouTube",
+"link": "https://media2.pl/rss/tag/youtube.xml"
+},
+{
+"name": "Newsweek",
+"link": "https://media2.pl/rss/tag/newsweek.xml"
+},
+{
+"name": "ITV",
+"link": "https://media2.pl/rss/tag/itv.xml"
+},
+{
+"name": "presonel",
+"link": "https://media2.pl/rss/tag/personel.xml"
+},
+{
+"name": "Bauer",
+"link": "https://media2.pl/rss/tag/Bauer.xml"
+},
+{
+"name": "Agora",
+"link": "https://media2.pl/rss/tag/agora.xml"
+},
+{
+"name": "Aster",
+"link": "https://media2.pl/rss/tag/aster.xml"
+},
+{
+"name": "TVP1",
+"link": "https://media2.pl/rss/tag/tvp1.xml"
+},
+{
+"name": "ITI",
+"link": "https://media2.pl/rss/tag/iti.xml"
+},
+{
+"name": "boks",
+"link": "https://media2.pl/rss/tag/boks.xml"
+},
+{
+"name": "Polsat Cafe",
+"link": "https://media2.pl/rss/tag/polsat-cafe.xml"
+},
+{
+"name": "MP3",
+"link": "https://media2.pl/rss/tag/mp3.xml"
+},
+{
+"name": "notebook",
+"link": "https://media2.pl/rss/tag/notebook.xml"
+},
+{
+"name": "KE",
+"link": "https://media2.pl/rss/tag/ke.xml"
+},
+{
+"name": "HD",
+"link": "https://media2.pl/rss/tag/hd.xml"
+},
+{
+"name": "Discovery Channel",
+"link": "https://media2.pl/rss/tag/discovery-channel.xml"
+},
+{
+"name": "Simplus",
+"link": "https://media2.pl/rss/tag/simplus.xml"
+},
+{
+"name": "Google",
+"link": "https://media2.pl/rss/tag/google.xml"
+},
+{
+"name": "Lenovo",
+"link": "https://media2.pl/rss/tag/lenovo.xml"
+},
+{
+"name": "Trójka",
+"link": "https://media2.pl/rss/tag/trojka.xml"
+},
+{
+"name": "roaming",
+"link": "https://media2.pl/rss/tag/roaming.xml"
+},
+{
+"name": "Comedy Central",
+"link": "https://media2.pl/rss/tag/comedy-central.xml"
+},
+{
+"name": "Eleven",
+"link": "https://media2.pl/rss/tag/Eleven.xml"
+},
+{
+"name": "Wprost",
+"link": "https://media2.pl/rss/tag/wprost.xml"
+},
+{
+"name": "fakty",
+"link": "https://media2.pl/rss/tag/fakty.xml"
+},
+{
+"name": "TVN24",
+"link": "https://media2.pl/rss/tag/tvn24.xml"
+},
+{
+"name": "sport",
+"link": "https://media2.pl/rss/tag/sport.xml"
+},
+{
+"name": "TP",
+"link": "https://media2.pl/rss/tag/tp.xml"
+},
+{
+"name": "Wydarzenia",
+"link": "https://media2.pl/rss/tag/wydarzenia.xml"
+},
+{
+"name": "Disney Channel",
+"link": "https://media2.pl/rss/tag/disney-channel.xml"
+},
+{
+"name": "PTC",
+"link": "https://media2.pl/rss/tag/ptc.xml"
+},
+{
+"name": "monitor",
+"link": "https://media2.pl/rss/tag/monitor.xml"
+},
+{
+"name": "RMF FM",
+"link": "https://media2.pl/rss/tag/rmf-fm.xml"
+},
+{
+"name": "Plus na Kartę",
+"link": "https://media2.pl/rss/tag/plus-na-karte.xml"
+},
+{
+"name": "Netia",
+"link": "https://media2.pl/rss/tag/netia.xml"
+},
+]s
