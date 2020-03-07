@@ -43,6 +43,15 @@ namespace RSS_reader.Model
             XmlNodeList node = root.SelectNodes(search, nsmgr);
             return node;
         }
+        public XmlNodeList showMeAllTitles()
+        {
+
+            var search = "descendant::bk:item";
+            XmlNodeList node = root.SelectNodes(search, nsmgr);
+
+            return node;
+
+        }
 
     }
 
