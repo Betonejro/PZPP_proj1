@@ -7,9 +7,8 @@ using System.Xml;
 
 namespace RSS_reader.Model
 {
-    class SearchXML
+    class Xpath
     {
-       
         XmlDocument doc = new XmlDocument();
 
         private string connectString { get; set; }
@@ -17,48 +16,32 @@ namespace RSS_reader.Model
         private string searchString { get; set; }
 
         private string xmlns { get; set; }
-
-        public SearchXML(string connectString, string xmlns)
+        private XmlNode root { get; set; }
+        private XmlNamespaceManager nsmgr { get; set; }
+        public Xpath(string connectString, string xmlns)
         {
             this.connectString = connectString;
             this.xmlns = xmlns;
+            doc.Load(connectString);
+            this.root = doc.DocumentElement;
+            this.nsmgr = new XmlNamespaceManager(doc.NameTable);
+            nsmgr.AddNamespace("bk", xmlns);
         }
 
-        public string searchOneByCategory(string category)
+        public XmlNode searchOneByCategory(string category)
         {
-            doc.Load(connectString);
-            XmlNode root = doc.DocumentElement;
-            XmlNamespaceManager nsmgr = new XmlNamespaceManager(doc.NameTable);
-            nsmgr.AddNamespace("bk", xmlns);
+
             var search = "descendant::bk:item[bk:category='" + category + "']";
             XmlNode node = root.SelectSingleNode(search, nsmgr);
-            return search;
+
+            return node;
         }
         public XmlNodeList searchManyByCategory(string category)
         {
-            doc.Load(connectString);
-            XmlNode root = doc.DocumentElement;
-            XmlNamespaceManager nsmgr = new XmlNamespaceManager(doc.NameTable);
-            nsmgr.AddNamespace("bk", xmlns);
+
             var search = "descendant::bk:item[bk:category='" + category + "']";
             XmlNodeList node = root.SelectNodes(search, nsmgr);
             return node;
-        }
-        public List<XmlNode> showMeAllTitles()
-        {
-            doc.Load(connectString);
-            XmlNode root = doc.DocumentElement;
-            XmlNamespaceManager nsmgr = new XmlNamespaceManager(doc.NameTable);
-            nsmgr.AddNamespace("bk", xmlns);
-            var search = "descendant::bk:item";
-            XmlNodeList node = root.SelectNodes(search, nsmgr);
-
-            List<XmlNode> list = new List<XmlNode>(); //(item.FirstChild.InnerText);
-            foreach (XmlNode item in node)
-            {
-                list.Add(item);
-            }
-            return list;
         }
 
     }
