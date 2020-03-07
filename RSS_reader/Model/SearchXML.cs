@@ -44,7 +44,7 @@ namespace RSS_reader.Model
             XmlNodeList node = root.SelectNodes(search, nsmgr);
             return node;
         }
-        public void showMeAllTitles()
+        public List<XmlNode> showMeAllTitles()
         {
             doc.Load(connectString);
             XmlNode root = doc.DocumentElement;
@@ -58,6 +58,7 @@ namespace RSS_reader.Model
             {
                 list.Add(item);
             }
+            return list;
         }
 
     }
