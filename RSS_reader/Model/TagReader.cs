@@ -20,28 +20,28 @@ namespace RSS_reader.Model
             var doc = web.Load(url);
             //var container = doc.DocumentNode.SelectSingleNode();
             var htmlCollection = doc.DocumentNode.SelectNodes("//p/a");
-            StringBuilder htmlLinks = new StringBuilder();
+            var htmlLinks = new StringBuilder();
             foreach (var current in htmlCollection)
             {
                 htmlLinks.AppendLine(current.Attributes["href"].Value);
             }
 
             var document = htmlLinks.ToString();
-            var delims = new[] { '\r', '\n' };
-            var tags = document.Split(delims, StringSplitOptions.RemoveEmptyEntries);
+            var newLine = new[] { '\r', '\n' };
+            var tags = document.Split(newLine, StringSplitOptions.RemoveEmptyEntries);
 
             foreach (var item in tags)
             {
                 var tail = item.Substring(item.Length - 4);
-                if (tail == ".xml")
-                {
-                    var itemSplit = item.Split('/');
-                    var itemTail = itemSplit[itemSplit.Length-1];
-                    var itemName = itemTail.Split('.');
-                    var name = itemName[0];
-                    var currentTag = new itemTag {Href = item, Name = name};
-                    Tags.Add(currentTag);
-                }
+
+                if (tail != ".xml") return;
+
+                var itemSplit = item.Split('/');
+                var itemTail = itemSplit[itemSplit.Length-1];
+                var itemName = itemTail.Split('.');
+                var name = itemName[0];
+                var currentTag = new itemTag {Href = item, Name = name};
+                Tags.Add(currentTag);
             }
 
             //System.IO.File.WriteAllText(@"D://WriteText.txt", a.ToString());
