@@ -19,30 +19,28 @@ namespace RSS_reader.Model
             var web = new HtmlWeb();
             var doc = web.Load(url);
             //var container = doc.DocumentNode.SelectSingleNode();
-            var tag = doc.DocumentNode.SelectNodes("//p/a");
-            StringBuilder a = new StringBuilder();
-            foreach (var x in tag)
+            var htmlCollection = doc.DocumentNode.SelectNodes("//p/a");
+            StringBuilder htmlLinks = new StringBuilder();
+            foreach (var current in htmlCollection)
             {
-                a.AppendLine(x.Attributes["href"].Value);
+                htmlLinks.AppendLine(current.Attributes["href"].Value);
             }
 
-            string document = a.ToString();
-            char[] delims = new[] { '\r', '\n' };
+            var document = htmlLinks.ToString();
+            var delims = new[] { '\r', '\n' };
             var tags = document.Split(delims, StringSplitOptions.RemoveEmptyEntries);
 
-            for (int i = 0; i < tags.Length; i++)
+            foreach (var item in tags)
             {
-                string tail = tags[i].Substring(tags[i].Length - 4);
+                var tail = item.Substring(item.Length - 4);
                 if (tail == ".xml")
                 {
-                    var splited = tags[i].Split('/');
-                    string namewithxmltail = splited[splited.Length-1];
-                    var namesplit = namewithxmltail.Split('.');
-                    string name = namesplit[0];
-                    var item = new itemTag();
-                    item.Href = tags[i];
-                    item.Name = name;
-                    Tags.Add(item);
+                    var itemSplit = item.Split('/');
+                    var itemTail = itemSplit[itemSplit.Length-1];
+                    var itemName = itemTail.Split('.');
+                    var name = itemName[0];
+                    var currentTag = new itemTag {Href = item, Name = name};
+                    Tags.Add(currentTag);
                 }
             }
 
