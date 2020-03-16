@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Navigation;
 using System.Xml;
+using Newtonsoft.Json;
 
 namespace RSS_reader.Model
 {
@@ -39,11 +41,31 @@ namespace RSS_reader.Model
                 }
                 rssItem.Description = item.SelectSingleNode("description").InnerText;
                 rssItem.PubDate = item.SelectSingleNode("pubDate").InnerText;
-                System.IO.File.WriteAllText(@"D://WriteText.txt", rssItem.GetDatatime().ToString());
+                convertToJSON(rssItem);
+               
+                //  System.IO.File.WriteAllText(@"D://WriteText.txt", rssItem.GetDatatime().ToString());
             }
-
-            //System.IO.File.WriteAllText(@"D://WriteText.txt", xmlDoc.InnerXml);
+            
+            
         }
+        private void convertToJSON(itemRSS rssItem)
+        {
+           StreamWriter streamWriter = new StreamWriter(@"C:\Users\Krute\OneDrive\Pulpit/TO.txt", true);
+            var sJSONResponse = JsonConvert.SerializeObject(rssItem);
+
+            streamWriter.WriteLine(sJSONResponse);
+
+            //foreach (var item in sJSONResponse)
+            //{
+            //    streamWriter.Write(item);
+            //}
+            
+            
+            streamWriter.Close();
+        }
+
+     
+
 
         public string GetParent(string url)
         {
@@ -54,6 +76,8 @@ namespace RSS_reader.Model
 
             return name;
         }
+
+    
     }
 
 }

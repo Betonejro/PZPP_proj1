@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Runtime;
 using System.Text;
 using System.Threading.Tasks;
 using HtmlAgilityPack;
+using Newtonsoft.Json;
+
 
 namespace RSS_reader.Model
 {
@@ -44,7 +47,25 @@ namespace RSS_reader.Model
                 Tags.Add(currentTag);
             }
 
-            //System.IO.File.WriteAllText(@"D://WriteText.txt", a.ToString());
+            toJSON(); 
+           
+
+
+        }
+
+        private void toJSON()
+        {
+            StreamWriter streamWriter = new StreamWriter(@"C:\Users\Krute\OneDrive\Pulpit/TO.txt", true);
+            string sJSONResponse = JsonConvert.SerializeObject(Tags);
+
+            foreach (var item in sJSONResponse)
+            {
+                streamWriter.Write(item);
+            }
+
+
+            streamWriter.Close();
+            
         }
     }
 }
