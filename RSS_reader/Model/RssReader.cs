@@ -41,7 +41,7 @@ namespace RSS_reader.Model
                 }
                 rssItem.Description = item.SelectSingleNode("description").InnerText;
                 rssItem.PubDate = item.SelectSingleNode("pubDate").InnerText;
-                convertToJSON(rssItem);
+                
               
             }
             
