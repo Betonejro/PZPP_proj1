@@ -47,17 +47,11 @@ namespace RSS_reader.Model
                 Tags.Add(currentTag);
             }
 
-            
-           
-
-
         }
 
         private void toJSON()
         {
-            
             string sJSONResponse = JsonConvert.SerializeObject(Tags);
-
         }
     }
 }

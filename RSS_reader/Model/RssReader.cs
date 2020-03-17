@@ -42,9 +42,7 @@ namespace RSS_reader.Model
                 rssItem.Description = item.SelectSingleNode("description").InnerText;
                 rssItem.PubDate = item.SelectSingleNode("pubDate").InnerText;
                 
-              
             }
-            
             
         }
         private string convertToJSON(itemRSS rssItem)
@@ -53,7 +51,6 @@ namespace RSS_reader.Model
             var sJSONResponse = JsonConvert.SerializeObject(rssItem);
             return sJSONResponse;
 
-           
         }
       
         public void test()
@@ -61,8 +58,6 @@ namespace RSS_reader.Model
             MongoCRUD db = new MongoCRUD("TestBase");
             db.InsertRecord("Rss", new itemRSS());
         }
-     
-
 
         public string GetParent(string url)
         {
@@ -74,7 +69,6 @@ namespace RSS_reader.Model
             return name;
         }
 
-    
     }
 
 }
