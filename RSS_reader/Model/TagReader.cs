@@ -47,7 +47,7 @@ namespace RSS_reader.Model
                 Tags.Add(currentTag);
             }
 
-            toJSON(); 
+            
            
 
 
@@ -55,17 +55,9 @@ namespace RSS_reader.Model
 
         private void toJSON()
         {
-            StreamWriter streamWriter = new StreamWriter(@"C:\Users\Krute\OneDrive\Pulpit/TO.txt", true);
+            
             string sJSONResponse = JsonConvert.SerializeObject(Tags);
 
-            foreach (var item in sJSONResponse)
-            {
-                streamWriter.Write(item);
-            }
-
-
-            streamWriter.Close();
-            
         }
     }
 }

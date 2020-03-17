@@ -42,28 +42,25 @@ namespace RSS_reader.Model
                 rssItem.Description = item.SelectSingleNode("description").InnerText;
                 rssItem.PubDate = item.SelectSingleNode("pubDate").InnerText;
                 convertToJSON(rssItem);
-               
-                //  System.IO.File.WriteAllText(@"D://WriteText.txt", rssItem.GetDatatime().ToString());
+              
             }
             
             
         }
-        private void convertToJSON(itemRSS rssItem)
+        private string convertToJSON(itemRSS rssItem)
         {
-           StreamWriter streamWriter = new StreamWriter(@"C:\Users\Krute\OneDrive\Pulpit/TO.txt", true);
+           
             var sJSONResponse = JsonConvert.SerializeObject(rssItem);
+            return sJSONResponse;
 
-            streamWriter.WriteLine(sJSONResponse);
-
-            //foreach (var item in sJSONResponse)
-            //{
-            //    streamWriter.Write(item);
-            //}
-            
-            
-            streamWriter.Close();
+           
         }
-
+      
+        public void test()
+        {
+            MongoCRUD db = new MongoCRUD("TestBase");
+            db.InsertRecord("Rss", new itemRSS());
+        }
      
 
 
