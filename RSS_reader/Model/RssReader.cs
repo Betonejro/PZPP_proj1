@@ -38,26 +38,33 @@ namespace RSS_reader.Model
                     {
                         rssItem.Categories.Add(category.InnerText);
                     }
-                }
+                  }
                 rssItem.Description = item.SelectSingleNode("description").InnerText;
                 rssItem.PubDate = item.SelectSingleNode("pubDate").InnerText;
+
+                MongoCRUD mongoCRUD = new MongoCRUD("BazaTestowa");
+                if(mongoCRUD.CheckThisGuidInMongo<itemRSS>("BazaTestowa", rssItem.Guid) != true)
+                {
+                    mongoCRUD.InsertRecord<itemRSS>("BazaTestowa", rssItem);
+                }
+
+
+               
+
                 
+
             }
-            
-        }
-        private string convertToJSON(itemRSS rssItem)
-        {
-           
-            var sJSONResponse = JsonConvert.SerializeObject(rssItem);
-            return sJSONResponse;
+
 
         }
-      
-        public void test()
+
+
+        private string convertToJSON(itemRSS rssItem)
         {
-            MongoCRUD db = new MongoCRUD("TestBase");
-            db.InsertRecord("Rss", new itemRSS());
+            var sJSONResponse = JsonConvert.SerializeObject(rssItem);
+            return sJSONResponse;
         }
+   
 
         public string GetParent(string url)
         {
@@ -69,6 +76,7 @@ namespace RSS_reader.Model
             return name;
         }
 
+    
     }
 
 }

@@ -25,7 +25,7 @@ namespace RSS_reader
         {
             InitializeComponent();
             var Reader = new RssReader();
-            Reader.ReadItemsFromCanal("https://media2.pl/rss/tag/imm.xml");
+            Reader.ReadItemsFromCanal("https://media2.pl/rss/tag/TeleTOON-Plus.xml");
         }
     }
 }
