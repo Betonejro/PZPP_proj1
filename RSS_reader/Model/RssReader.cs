@@ -61,11 +61,11 @@ namespace RSS_reader.Model
 
         }
 
-        public void ReadItemsFromMultipleSources(TagReader tags)
+        public void ReadItemsFromMultipleSources(List<string> tags)
         {
-            foreach (var source in tags.Tags)
+            foreach (var source in tags)
             {
-                ReadItemsFromCanal(source.Href);
+                ReadItemsFromCanal(source);
             }
         }
 

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using RSS_reader.Model;
 
 namespace RSS_reader.ViewModel
 {
@@ -16,9 +17,21 @@ namespace RSS_reader.ViewModel
 
         }//tu dodawać nowe relay commands
 
+        public void ReadMediaChannels()
+        {
+            var Tagger = new TagReader();
+            foreach (var sources in Tagger.Tags)
+            {
+                mediaChannels.Add(sources.Href);
+            }
+        }
 
+        public void SaveItemsFromChannelsToDatabase()
+        {
+            var Reader = new RssReader();
 
-
+            Reader.ReadItemsFromMultipleSources(mediaChannels);
+        }
 
 
     }
