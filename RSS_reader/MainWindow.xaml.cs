@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using RSS_reader.Model;
+using RSS_reader.ViewModel;
 
 namespace RSS_reader
 {
@@ -24,8 +25,9 @@ namespace RSS_reader
         public MainWindow()
         {
             InitializeComponent();
-            var Reader = new RssReader();
-            Reader.ReadItemsFromCanal("https://media2.pl/rss/tag/TeleTOON-Plus.xml");
+            DataContext = new MainWindowViewModel();
+            //var Reader = new RssReader();
+            //Reader.ReadItemsFromCanal("https://media2.pl/rss/tag/TeleTOON-Plus.xml");
         }
     }
 }
