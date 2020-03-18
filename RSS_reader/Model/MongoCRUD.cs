@@ -24,14 +24,32 @@ namespace RSS_reader.Model
         }
         public bool CheckThisGuidInMongo<T>(string table, string Id)
         {
-            //var collection = db.GetCollection<itemRSS>(table);
-            //bool exists = collection.AsQueryable().Any(iRSS=>iRSS.Guid == Id) != false;
-
-           
-            //return exists;
             var collection = db.GetCollection<itemRSS>(table);
             var exists = collection.AsQueryable().FirstOrDefault(avm => avm.Guid == Id) != null;
             return exists;
+        }
+        //Ponizej są nowe 
+        public List<itemRSS> returnItemRSSFindedByCategory<T>(string table, List<string> categories)
+        {
+            List<itemRSS> listOfFindedItemRSS = new List<itemRSS>();
+            var collection = db.GetCollection<itemRSS>(table);
+           
+            foreach (var categoryInListWithOneComeHere in categories)
+            {
+                var filter = Builders<itemRSS>.Filter.Eq("Categories", "IMM");
+                var ToReturn = collection.Find(filter).ToList();
+                foreach (var item in ToReturn)
+                {
+                    listOfFindedItemRSS.Add(item);
+                }
+
+            }
+            //Działa dla jednej kategorji
+            //var filter = Builders<itemRSS>.Filter.Eq("Categories", "IMM");
+            //var collection = db.GetCollection<itemRSS>(table);
+            //var ToReturn = collection.Find(filter).ToList();
+            //List<itemRSS> listOfFindedItemRSS = new List<itemRSS>();
+            return listOfFindedItemRSS;
         }
 
 
