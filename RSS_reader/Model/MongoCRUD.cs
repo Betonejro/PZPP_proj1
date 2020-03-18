@@ -9,9 +9,7 @@ namespace RSS_reader.Model
 {
     class MongoCRUD
     {
-        
         private IMongoDatabase db;
-      
         public MongoCRUD(string database)
         {
             var client = new MongoClient();
