@@ -43,13 +43,10 @@ namespace RSS_reader.Model
                 rssItem.Description = item.SelectSingleNode("description").InnerText;
                 rssItem.PubDate = item.SelectSingleNode("pubDate").InnerText;
 
-               
                 if(mongoCRUD.CheckThisGuidInMongo<itemRSS>("BazaTestowa", rssItem.Guid) != true)
                 {
                     mongoCRUD.InsertRecord<itemRSS>("BazaTestowa", rssItem);
                 }
-
-            
 
             }
             List<string> kategoriee = new List<string>();
@@ -62,10 +59,15 @@ namespace RSS_reader.Model
             }
             System.IO.File.WriteAllText(@"C:\Users\Krute\OneDrive\Pulpit\TO.txt",tekst);
 
-
-
         }
 
+        public void ReadItemsFromMultipleSources(TagReader tags)
+        {
+            foreach (var source in tags.Tags)
+            {
+                ReadItemsFromCanal(source.Href);
+            }
+        }
 
         private string convertToJSON(itemRSS rssItem)
         {
