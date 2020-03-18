@@ -36,7 +36,7 @@ namespace RSS_reader.Model
            
             foreach (var categoryInListWithOneComeHere in categories)
             {
-                var filter = Builders<itemRSS>.Filter.Eq("Categories", "IMM");
+                var filter = Builders<itemRSS>.Filter.Eq("Categories", categoryInListWithOneComeHere);
                 var ToReturn = collection.Find(filter).ToList();
                 foreach (var item in ToReturn)
                 {
