@@ -47,10 +47,6 @@ namespace RSS_reader.Model
                 Tags.Add(currentTag);
             }
 
-            
-           
-
-
         }
 
         private void toJSON()
