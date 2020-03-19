@@ -51,6 +51,38 @@ namespace RSS_reader.Model
             //List<itemRSS> listOfFindedItemRSS = new List<itemRSS>();
             return listOfFindedItemRSS;
         }
+        public List<itemRSS> returnAllRSSItems<T>(string table)
+        {
+            var collection = db.GetCollection<itemRSS>(table);
+            List<itemRSS> listOdRSSItem = new List<itemRSS>();
+            foreach (var item in collection.AsQueryable())
+            {
+                listOdRSSItem.Add(item);  
+            }
+            return listOdRSSItem;
+
+        }
+        public List<string> returnAllCategoiresInMongo<T>(string table)
+        {
+            List<string> toReturn = new List<string>();
+            List<string> allCategories = new List<string>();
+            
+
+            var collection = db.GetCollection<itemRSS>(table);
+            var querableCollection = collection.AsQueryable();
+            foreach (var ItemInCollection in querableCollection)
+            {
+
+                foreach (var simplyCategory in ItemInCollection.Categories)
+                { 
+
+                    allCategories.Add(simplyCategory.ToString());
+                }
+
+            }
+
+            return allCategories.Distinct().ToList();
+        }
 
 
     }

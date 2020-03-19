@@ -26,6 +26,7 @@ namespace RSS_reader
         {
             InitializeComponent();
             DataContext = new MainWindowViewModel();
+
             //var Reader = new RssReader();
             //Reader.ReadItemsFromCanal("https://media2.pl/rss/tag/TeleTOON-Plus.xml");
         }

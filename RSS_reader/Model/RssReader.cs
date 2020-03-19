@@ -13,7 +13,7 @@ namespace RSS_reader.Model
     class RssReader
     {
         public List<itemRSS> Items = new List<itemRSS>();
-        MongoCRUD mongoCRUD = new MongoCRUD("BazaTestowa");
+        
         public void ReadItemsFromCanal(string url)
         {
             var xmlDoc = new XmlDocument();
@@ -40,24 +40,13 @@ namespace RSS_reader.Model
                         rssItem.Categories.Add(category.InnerText);
                     }
                   }
+                
                 rssItem.Description = item.SelectSingleNode("description").InnerText;
                 rssItem.PubDate = item.SelectSingleNode("pubDate").InnerText;
-
-                if(mongoCRUD.CheckThisGuidInMongo<itemRSS>("BazaTestowa", rssItem.Guid) != true)
-                {
-                    mongoCRUD.InsertRecord<itemRSS>("BazaTestowa", rssItem);
-                }
+             
 
             }
-            List<string> kategoriee = new List<string>();
-            kategoriee.Add("Media");
-            kategoriee.Add("IMM");
-            var tekst = "";
-            foreach (var item in mongoCRUD.returnItemRSSFindedByCategory<itemRSS>("BazaTestowa", kategoriee))
-            {
-                tekst += item.Title;
-            }
-            System.IO.File.WriteAllText(@"C:\Users\Krute\OneDrive\Pulpit\TO.txt",tekst);
+            
 
         }
 

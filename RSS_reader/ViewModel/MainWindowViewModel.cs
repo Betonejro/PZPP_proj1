@@ -4,18 +4,61 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using RSS_reader.Model;
+using System.Collections.ObjectModel;
+using Caliburn.Micro;
 
 namespace RSS_reader.ViewModel
 {
     class MainWindowViewModel : ViewModelBase
     {
+        
         List<string> mediaChannels = new List<string>();
-        //napisać metode która pobiera linki z tego kanału na media2/rss i dodaje do tej listy
+        List<string> categoriesList = new List<string>();
+           
+        public BindableCollection<itemRSS> itemsRss { get; set; }
 
+        
+        //public string Test2
+        //{
+        //    get => _test2;
+        //    set
+        //    {
+        //        _test2 = value;
+        //        OnPropertyChange();
+        //    }
+        //}
+        //private string _test2;
+       
+          
+        
+       
         public MainWindowViewModel()
         {
 
+
+            MongoCRUD mongoCRUD = new MongoCRUD("BazaTestowa");
+            itemsRss = new BindableCollection<itemRSS>(mongoCRUD.returnAllRSSItems<itemRSS>("BazaTestowa"));
+
+           
         }//tu dodawać nowe relay commands
+
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         public void ReadMediaChannels()
         {
