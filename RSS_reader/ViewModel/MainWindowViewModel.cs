@@ -35,11 +35,13 @@ namespace RSS_reader.ViewModel
         public MainWindowViewModel()
         {
 
-
+            
             MongoCRUD mongoCRUD = new MongoCRUD("BazaTestowa");
             itemsRss = new BindableCollection<itemRSS>(mongoCRUD.returnAllRSSItems<itemRSS>("BazaTestowa"));
 
-           
+
+            var tagReader = new TagReader();
+            tagReader.ReadTags();
         }//tu dodawać nowe relay commands
 
                 

@@ -22,6 +22,19 @@ namespace RSS_reader.Model
             collection.InsertOne(record);
             
         }
+
+        public void InsertSourceToDatabase<T>(string collectionName, T source)
+        {
+            var collection = db.GetCollection<T>(collectionName);
+            collection.InsertOne(source);
+        }
+
+        public bool CheckRecordInCollection(string collectionName, string primaryKey)
+        {
+            var collection = db.GetCollection<itemTag>(collectionName);
+            var isExist = collection.AsQueryable().FirstOrDefault(tag => tag.Name == primaryKey) != null;
+            return isExist;
+        }
         public bool CheckThisGuidInMongo<T>(string table, string Id)
         {
             var collection = db.GetCollection<itemRSS>(table);

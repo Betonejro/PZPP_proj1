@@ -45,8 +45,24 @@ namespace RSS_reader.Model
                 var name = itemName[0];
                 var currentTag = new itemTag {Href = item, Name = name};
                 Tags.Add(currentTag);
-            }
 
+            }
+            SaveToDB();
+        }
+
+        private void SaveToDB()
+        {
+            const string sourcesCollection = "XML_sources";
+            var db = new MongoCRUD("BazaTestowa");
+
+            foreach (var sources in Tags)
+            {
+                if (db.CheckRecordInCollection(sourcesCollection,sources.Name) != true)
+                {
+                    db.InsertSourceToDatabase(sourcesCollection, sources);
+                }
+
+            }
         }
 
         private void toJSON()
