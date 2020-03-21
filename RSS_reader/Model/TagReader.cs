@@ -6,6 +6,7 @@ using System.Runtime;
 using System.Text;
 using System.Threading.Tasks;
 using HtmlAgilityPack;
+using MongoDB.Bson;
 using Newtonsoft.Json;
 
 
@@ -37,7 +38,7 @@ namespace RSS_reader.Model
             {
                 var tail = item.Substring(item.Length - 4);
 
-                if (tail != ".xml") return;
+                if (tail != ".xml") continue;
 
                 var itemSplit = item.Split('/');
                 var itemTail = itemSplit[itemSplit.Length-1];
