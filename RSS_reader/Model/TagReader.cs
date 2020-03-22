@@ -6,6 +6,7 @@ using System.Runtime;
 using System.Text;
 using System.Threading.Tasks;
 using HtmlAgilityPack;
+using MongoDB.Bson;
 using Newtonsoft.Json;
 
 
@@ -18,7 +19,6 @@ namespace RSS_reader.Model
         
         public void ReadTags()
         {
-      
             var url = "https://media2.pl/rss";
             var web = new HtmlWeb();
             var doc = web.Load(url);
@@ -29,17 +29,17 @@ namespace RSS_reader.Model
             {
                 htmlLinks.AppendLine(current.Attributes["href"].Value);
             }
-          
+
             var document = htmlLinks.ToString();
             var newLine = new[] { '\r', '\n' };
             var tags = document.Split(newLine, StringSplitOptions.RemoveEmptyEntries);
-           
+
             foreach (var item in tags)
             {
                 var tail = item.Substring(item.Length - 4);
 
                 if (tail != ".xml") continue;
-                System.IO.File.WriteAllText(@"C:\Users\Krute\OneDrive\Pulpit\TO.txt", "Środek");
+
                 var itemSplit = item.Split('/');
                 var itemTail = itemSplit[itemSplit.Length-1];
                 var itemName = itemTail.Split('.');
@@ -48,20 +48,17 @@ namespace RSS_reader.Model
                 Tags.Add(currentTag);
 
             }
-           
             SaveToDB();
-         
         }
 
         private void SaveToDB()
         {
             const string sourcesCollection = "XML_sources";
-            var db = new MongoCRUD("NowaBaza");
+            var db = new MongoCRUD("BazaTestowa");
 
             foreach (var sources in Tags)
             {
-                
-                if (db.CheckRecordInCollection(sourcesCollection,sources.Name) == true)
+                if (db.CheckRecordInCollection(sourcesCollection,sources.Name) != true)
                 {
                     db.InsertSourceToDatabase(sourcesCollection, sources);
                 }
