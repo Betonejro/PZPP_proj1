@@ -12,8 +12,9 @@ namespace RSS_reader.Model
 {
     class RssReader
     {
-        public List<itemRSS> Items = new List<itemRSS>();
         
+        public List<itemRSS> Items = new List<itemRSS>();
+        MongoCRUD mg = new MongoCRUD("BaseOfRssItems");
         public void ReadItemsFromCanal(string url)
         {
             var xmlDoc = new XmlDocument();
@@ -43,9 +44,19 @@ namespace RSS_reader.Model
                 
                 rssItem.Description = item.SelectSingleNode("description").InnerText;
                 rssItem.PubDate = item.SelectSingleNode("pubDate").InnerText;
-             
+
+                string tekst = "";
+                foreach (var items in mg.returnOnlyAllCategoiresInMongoToList<Categories>("Collection"))
+                {
+                    tekst += items.category;
+                   
+                }
+                System.IO.File.WriteAllText(@"C:\Users\Krute\OneDrive\Pulpit\TO.txt", tekst);
+
 
             }
+           
+           
             
 
         }

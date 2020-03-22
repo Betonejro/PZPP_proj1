@@ -18,6 +18,8 @@ namespace RSS_reader.Model
         public List<string> Categories = new List<string>();
         public string Description { get; set; }
         public string PubDate { get; set; }
+
+        
       
 
         public DateTime GetDatatime()

@@ -96,6 +96,27 @@ namespace RSS_reader.Model
 
             return allCategories.Distinct().ToList();
         }
+        public List<Categories> returnOnlyAllCategoiresInMongoToList<T>(string table)
+        {
+            List<string> toReturn = new List<string>();
+            List<Categories> allCategories = new List<Categories>();
+
+
+            var collection = db.GetCollection<itemRSS>(table);
+            var querableCollection = collection.AsQueryable();
+            foreach (var ItemInCollection in querableCollection)
+            {
+
+                foreach (var simplyCategory in ItemInCollection.Categories)
+                {
+                    allCategories.Add(new Categories(simplyCategory));
+                    
+                }
+
+            }
+
+            return allCategories.Distinct().ToList();
+        }
 
 
     }

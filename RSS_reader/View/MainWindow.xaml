@@ -25,11 +25,14 @@
 
             </Grid>
             <Grid Grid.Row="0" Grid.Column="1">
-                <ComboBox ItemsSource="{Binding itemsRss}">
+                <ComboBox ItemsSource="{Binding categories}" >
                     <ComboBox.ItemTemplate >
                         <DataTemplate>
-                            <TextBlock Text="{Binding Title}"/>
+                            <StackPanel>
+                                <TextBlock Text="{Binding category}"/>
+                                <CheckBox x:Name="CheckBoxOFCategories" VerticalAlignment="Center" IsChecked="{Binding isChecked}"/>
 
+                            </StackPanel>
 
 
                         </DataTemplate>

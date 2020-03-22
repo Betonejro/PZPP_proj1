@@ -14,38 +14,64 @@ namespace RSS_reader.ViewModel
         
         List<string> mediaChannels = new List<string>();
         List<string> categoriesList = new List<string>();
+        List<string> valueOfCheckedCheckboxs = new List<string>();
            
-        public BindableCollection<itemRSS> itemsRss { get; set; }
+        public BindableCollection<Categories> categories  { get; set; }
+        public BindableCollection<itemRSS> itemRSScategories  { get; set; }
+        public bool isChecked { get; set; }
+        private itemRSS _listOfCategories;
+        public itemRSS listOfCategories
+        {
+            get => _listOfCategories;
+            set
+            {
+                OnPropertyChange();
+                _listOfCategories = value;
+                
+            }
+        }
 
-        
-        //public string Test2
-        //{
-        //    get => _test2;
-        //    set
-        //    {
-        //        _test2 = value;
-        //        OnPropertyChange();
-        //    }
-        //}
-        //private string _test2;
-       
-          
-        
-       
+        private Categories _allcategory;
+        public Categories allcategory
+        {
+            get => _allcategory;
+            set
+            {
+                OnPropertyChange();
+                _allcategory = value;
+
+            }
+        }
+
+
+        private bool _checkboxofcategory;
+        public bool checkboxofcategory
+        {
+            get => _checkboxofcategory;
+            set
+            {
+                OnPropertyChange();
+                _checkboxofcategory = value;
+            }
+        }
+
+
         public MainWindowViewModel()
         {
 
             
-            MongoCRUD mongoCRUD = new MongoCRUD("BazaTestowa");
-            itemsRss = new BindableCollection<itemRSS>(mongoCRUD.returnAllRSSItems<itemRSS>("BazaTestowa"));
+            MongoCRUD mongoCRUD = new MongoCRUD("BaseOfRssItems");
+            itemRSScategories = new BindableCollection<itemRSS>(mongoCRUD.returnAllRSSItems<itemRSS>("Collection"));
+            categories = new BindableCollection<Categories>(mongoCRUD.returnOnlyAllCategoiresInMongoToList<Categories>("Collection"));
+            //checkboxofcategory = new RelayCommand(checkboxofcategoryHandler);
 
-
-            var tagReader = new TagReader();
-            tagReader.ReadTags();
         }//tu dodawać nowe relay commands
 
                 
-
+        public void checkboxofcategoryHandler(Object obj)
+        {
+            checkboxofcategory = true;  
+        }
 
 
 
