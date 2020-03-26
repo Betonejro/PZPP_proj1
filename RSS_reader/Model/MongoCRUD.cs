@@ -107,13 +107,21 @@ namespace RSS_reader.Model
             foreach (var ItemInCollection in querableCollection)
             {
 
-                foreach (var simplyCategory in ItemInCollection.Categories)
+                foreach (var simplyCategory in ItemInCollection.Categories.Distinct())
                 {
-                    allCategories.Add(new Categories(simplyCategory));
-                    
+                    toReturn.Add(simplyCategory);
+
                 }
 
+
+
             }
+            foreach (var item in toReturn.Distinct())
+            {
+                allCategories.Add(new Categories(item));
+            }
+
+           
 
             return allCategories.Distinct().ToList();
         }
