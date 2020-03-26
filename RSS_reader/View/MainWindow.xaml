@@ -7,46 +7,34 @@
         xmlns:local="clr-namespace:RSS_reader"
         
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Media2 RSS reader" Height="450" Width="800" ResizeMode="NoResize">
     <Grid>
         <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="1*"></ColumnDefinition>
-                <ColumnDefinition Width="3*"></ColumnDefinition>
-            </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="1*"></RowDefinition>
-                <RowDefinition Height="3*"></RowDefinition>
+                <RowDefinition Height="29*"/>
+                <RowDefinition Height="391*"/>
             </Grid.RowDefinitions>
-            <Grid Grid.Row="0" Grid.Column="0">
-                
-            </Grid>
-            <Grid Grid.Row="1" Grid.Column="0">
-
-            </Grid>
-            <Grid Grid.Row="0" Grid.Column="1">
-                <ComboBox ItemsSource="{Binding categories}" >
-                    <ComboBox.ItemTemplate >
-                        <DataTemplate>
-                            <StackPanel>
-                                <TextBlock Text="{Binding category}"/>
-                                <CheckBox x:Name="CheckBoxOFCategories" VerticalAlignment="Center" IsChecked="{Binding isChecked}"/>
-
-                            </StackPanel>
 
 
-                        </DataTemplate>
-                    </ComboBox.ItemTemplate>
-                </ComboBox>
+            <ComboBox ItemsSource="{Binding categories}" Margin="10,10,0,0" Grid.RowSpan="2" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Width="349" >
+                <ComboBox.ItemTemplate >
+                    <DataTemplate>
+                        <StackPanel>
+                            <TextBlock Text="{Binding category}"/>
+                            <CheckBox x:Name="CheckBoxOFCategories" VerticalAlignment="Center" IsChecked="{Binding isChecked}"/>
 
-            </Grid>
-            <Grid Grid.Row="1" Grid.Column="1">
-               
-            </Grid>
+                        </StackPanel>
+
+
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+
+
 
 
         </Grid>
-        
-        
+
+
     </Grid>
 </Window>
