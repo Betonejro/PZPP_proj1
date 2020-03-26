@@ -29,6 +29,10 @@ namespace RSS_reader.Model
 
             foreach (XmlNode item in itemNodes)
             {
+                if (mg.CheckThisGuidInMongo<itemRSS>(itemCollection, item.SelectSingleNode("guid").InnerText) == true)
+                {
+                    return;
+                }
                 var rssItem = new itemRSS();
                 rssItem.Title = item.SelectSingleNode("title").InnerText;
                 rssItem.Href = item.SelectSingleNode("link").InnerText;
