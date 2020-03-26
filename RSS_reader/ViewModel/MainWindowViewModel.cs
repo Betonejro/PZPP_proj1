@@ -15,7 +15,8 @@ namespace RSS_reader.ViewModel
         List<string> mediaChannels = new List<string>();
         List<string> categoriesList = new List<string>();
         List<string> valueOfCheckedCheckboxs = new List<string>();
-           
+        MongoCRUD mongoCRUD = new MongoCRUD("BaseOfRssItems");
+
         public BindableCollection<Categories> categories  { get; set; }
         public BindableCollection<itemRSS> itemRSScategories  { get; set; }
         public bool isChecked { get; set; }
@@ -59,8 +60,7 @@ namespace RSS_reader.ViewModel
         public MainWindowViewModel()
         {
 
-            
-            MongoCRUD mongoCRUD = new MongoCRUD("BaseOfRssItems");
+            //GetNewDataFromSite();
             itemRSScategories = new BindableCollection<itemRSS>(mongoCRUD.returnAllRSSItems<itemRSS>("Collection"));
             categories = new BindableCollection<Categories>(mongoCRUD.returnOnlyAllCategoiresInMongoToList<Categories>("Collection"));
             //checkboxofcategory = new RelayCommand(checkboxofcategoryHandler);
@@ -73,37 +73,15 @@ namespace RSS_reader.ViewModel
             checkboxofcategory = true;  
         }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        public void ReadMediaChannels()
+        private void GetNewDataFromSite()
         {
-            var Tagger = new TagReader();
-            foreach (var sources in Tagger.Tags)
-            {
-                mediaChannels.Add(sources.Href);
-            }
+            var tagReader = new TagReader();
+            tagReader.ReadTags();
+            List<itemTag> items = new List<itemTag>();
+            items = mongoCRUD.returnAllSources<itemTag>("Sources");
+            
+            var itemReader = new RssReader();
+            itemReader.ReadItemsFromMultipleSources(items);
         }
-
-        public void SaveItemsFromChannelsToDatabase()
-        {
-            var Reader = new RssReader();
-
-            Reader.ReadItemsFromMultipleSources(mediaChannels);
-        }
-
-
     }
 }

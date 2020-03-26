@@ -16,8 +16,9 @@ namespace RSS_reader.Model
     class TagReader
     {
         public List<itemTag> Tags = new List<itemTag>();
+        MongoCRUD mg = new MongoCRUD("BaseOfRssItems");
+        const string sourcesCollection = "Sources";
 
-        
         public void ReadTags()
         {
       
@@ -40,7 +41,7 @@ namespace RSS_reader.Model
             {
                 var tail = item.Substring(item.Length - 4);
 
-                if (tail != ".xml") return;
+                if (tail != ".xml") continue;
 
                 var itemSplit = item.Split('/');
                 var itemTail = itemSplit[itemSplit.Length-1];
@@ -50,22 +51,19 @@ namespace RSS_reader.Model
                 Tags.Add(currentTag);
 
             }
-           
+
             SaveToDB();
          
         }
 
         private void SaveToDB()
         {
-            const string sourcesCollection = "XML_sources";
-            var db = new MongoCRUD("NowaBaza");
-
             foreach (var sources in Tags)
             {
                 
-                if (db.CheckRecordInCollection(sourcesCollection,sources.Name) == true)
+                if (mg.CheckRecordInCollection(sourcesCollection,sources.Name) != true)
                 {
-                    db.InsertSourceToDatabase(sourcesCollection, sources);
+                    mg.InsertSourceToDatabase(sourcesCollection, sources);
                 }
 
             }

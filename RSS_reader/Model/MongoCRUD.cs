@@ -64,6 +64,18 @@ namespace RSS_reader.Model
             //List<itemRSS> listOfFindedItemRSS = new List<itemRSS>();
             return listOfFindedItemRSS;
         }
+
+        public List<itemTag> returnAllSources<T>(string table)
+        {
+            var collection = db.GetCollection<itemTag>(table);
+            List<itemTag> returnList = new List<itemTag>();
+            foreach (var item in collection.AsQueryable())
+            {
+                returnList.Add(item);
+            }
+            
+            return returnList;
+        }
         public List<itemRSS> returnAllRSSItems<T>(string table)
         {
             var collection = db.GetCollection<itemRSS>(table);

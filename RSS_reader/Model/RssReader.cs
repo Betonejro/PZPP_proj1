@@ -15,6 +15,8 @@ namespace RSS_reader.Model
         
         public List<itemRSS> Items = new List<itemRSS>();
         MongoCRUD mg = new MongoCRUD("BaseOfRssItems");
+        const string itemCollection = "Collection";
+
         public void ReadItemsFromCanal(string url)
         {
             var xmlDoc = new XmlDocument();
@@ -31,7 +33,10 @@ namespace RSS_reader.Model
                 rssItem.Title = item.SelectSingleNode("title").InnerText;
                 rssItem.Href = item.SelectSingleNode("link").InnerText;
                 rssItem.Parent = Parent;
-                rssItem.Comments = item.SelectSingleNode("comments").InnerText;
+                if (item.SelectSingleNode("comments") != null)
+                {
+                    rssItem.Comments = item.SelectSingleNode("comments").InnerText;
+                }
                 rssItem.Guid = item.SelectSingleNode("guid").InnerText;
                 var categories = item.SelectNodes("category");
                 if (categories.Count > 0)
@@ -40,32 +45,22 @@ namespace RSS_reader.Model
                     {
                         rssItem.Categories.Add(category.InnerText);
                     }
-                  }
+                }
                 
                 rssItem.Description = item.SelectSingleNode("description").InnerText;
                 rssItem.PubDate = item.SelectSingleNode("pubDate").InnerText;
-
-                string tekst = "";
-                foreach (var items in mg.returnOnlyAllCategoiresInMongoToList<Categories>("Collection"))
-                {
-                    tekst += items.category;
-                   
-                }
-                System.IO.File.WriteAllText(@"C:\Users\Krute\OneDrive\Pulpit\TO.txt", tekst);
-
-
+                Items.Add(rssItem);
             }
-           
-           
-            
 
+            SaveToDB();
+            Items.Clear();
         }
 
-        public void ReadItemsFromMultipleSources(List<string> tags)
+        public void ReadItemsFromMultipleSources(List<itemTag> tags)
         {
             foreach (var source in tags)
             {
-                ReadItemsFromCanal(source);
+                ReadItemsFromCanal(source.Href);
             }
         }
 
@@ -91,7 +86,18 @@ namespace RSS_reader.Model
             return name;
         }
 
-    
+        private void SaveToDB()
+        {
+            foreach (var item in Items)
+            {
+
+                if (mg.CheckThisGuidInMongo<itemRSS>(itemCollection, item.Guid) != true)
+                {
+                    mg.InsertRecord(itemCollection, item);
+                }
+
+            }
+        }
     }
 
 }
