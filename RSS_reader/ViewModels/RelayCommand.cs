@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace RSS_reader.ViewModel
+namespace RSS_reader.ViewModels
 {
     public class RelayCommand : ICommand
 

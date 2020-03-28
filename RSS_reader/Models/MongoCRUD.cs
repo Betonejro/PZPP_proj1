@@ -46,7 +46,7 @@ namespace RSS_reader.Model
         {
             List<itemRSS> listOfFindedItemRSS = new List<itemRSS>();
             var collection = db.GetCollection<itemRSS>(table);
-           
+
             foreach (var categoryInListWithOneComeHere in categories)
             {
                 var filter = Builders<itemRSS>.Filter.Eq("Categories", categoryInListWithOneComeHere);
@@ -56,15 +56,28 @@ namespace RSS_reader.Model
                     listOfFindedItemRSS.Add(item);
                 }
 
-            }
-            //Działa dla jednej kategorji
-            //var filter = Builders<itemRSS>.Filter.Eq("Categories", "IMM");
-            //var collection = db.GetCollection<itemRSS>(table);
-            //var ToReturn = collection.Find(filter).ToList();
-            //List<itemRSS> listOfFindedItemRSS = new List<itemRSS>();
-            return listOfFindedItemRSS;
-        }
 
+                
+            }
+            return listOfFindedItemRSS;
+
+        }
+        //Działa dla jednej kategorji
+        public List<itemRSS> returnAllForOneCategory<t>(string table , string category)
+        {
+          
+            var filter = Builders<itemRSS>.Filter.Eq("Categories", category);
+            var collection = db.GetCollection<itemRSS>(table);
+            var ToReturn = collection.Find(filter).ToList();
+            //string taa = " ";
+            //foreach (var item in ToReturn)
+            //{
+            //    taa += item.Title;
+            //}
+            //System.IO.File.WriteAllText(@"C:\Users\Krute\OneDrive\Pulpit\TO.txt", taa);
+            return ToReturn;
+        }
+        
         public List<itemTag> returnAllSources<T>(string table)
         {
             var collection = db.GetCollection<itemTag>(table);

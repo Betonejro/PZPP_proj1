@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace RSS_reader.Model
 {
-    class Categories
+    public class Categories
     {
         public string category { get; set; }
         public bool chcecked { get; set; }
@@ -14,6 +14,10 @@ namespace RSS_reader.Model
         {
             this.category = category;       
             this.chcecked = check;
+        }
+        public Categories()
+        {
+                
         }
     }
 }

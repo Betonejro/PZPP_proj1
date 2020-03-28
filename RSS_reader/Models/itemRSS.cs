@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace RSS_reader.Model
 {
-    class itemRSS
+  public  class itemRSS
     {
         public ObjectId id { get; set; }
         public string Title { get; set; }
