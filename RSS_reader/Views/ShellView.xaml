@@ -10,7 +10,16 @@
         Title="Media2 RSS reader" Height="450" Width="800">
     
     <Grid>
-        <Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            
+        </Grid.ColumnDefinitions>
+        
+
+    </Grid>
+</Window>
+
+
+<!--<Grid.RowDefinitions>
             <RowDefinition Height="1*"/>
             <RowDefinition Height="7*"/>
         </Grid.RowDefinitions>
@@ -18,7 +27,9 @@
             <ColumnDefinition Width="2*"/>
             <ColumnDefinition Width="2*"/>
         </Grid.ColumnDefinitions>
-        <!--Row 0-->
+        -->
+<!--Row 0-->
+<!--
         <Grid>
             <TextBlock HorizontalAlignment="Left" Grid.Column="0" Grid.Row="0" Text="Wybierz kategorie: "/>
             <ComboBox x:Name="categories" MinHeight="50" MinWidth="100" MaxWidth="500" MaxHeight="300" HorizontalAlignment="Center" SelectedItem="{Binding Selected}" Grid.Column="0" Grid.Row="0">
@@ -43,8 +54,8 @@
                 <DataTemplate>
                     <StackPanel>
                         <TextBlock Text="{Binding Title}" HorizontalAlignment="Left" />
-                        <TextBlock Text="{Binding Comments}" />
-                        <TextBlock Text="{Binding PubDate}" HorizontalAlignment="Right" />
+                        <TextBlock Text="{Binding NewItemRSSCollection_Title}" />
+                        <TextBlock Text="{Binding GetDatatime}" HorizontalAlignment="Right" />
                     </StackPanel>
                 </DataTemplate>
             </ComboBox.ItemTemplate>
@@ -57,7 +68,4 @@
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Wybrane Kategorie: " Binding="{Binding Path=category}"/>
             </DataGrid.Columns>
-        </DataGrid>
-
-    </Grid>
-</Window>
+        </DataGrid>-->

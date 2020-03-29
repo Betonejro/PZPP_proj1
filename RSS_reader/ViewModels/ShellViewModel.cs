@@ -107,7 +107,13 @@ namespace RSS_reader.ViewModels
         }
         public void OpenWebSite()
         {
+            try { 
             System.Diagnostics.Process.Start(guid);
+                }
+            catch (Exception)
+            {
+
+            }
         }
         private void GetNewDataFromSite()
         {
