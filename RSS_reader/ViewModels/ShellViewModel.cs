@@ -88,7 +88,7 @@ namespace RSS_reader.ViewModels
             ALotOFSelectedCategoriesSupportCollection = new BindableCollection<Categories>(ALotOFSelectedCategories);
             ItemRSSCollection = new BindableCollection<itemRSS>(mongoCRUD.returnAllRSSItems<itemRSS>("Collection"));
             categories = new BindableCollection<Categories>(mongoCRUD.returnOnlyAllCategoiresInMongoToList<Categories>("Collection"));
-            NewItemRSSCollection = new BindableCollection<itemRSS>(mongoCRUD.returnAllForOneCategory<itemRSS>("Collection", test));
+            NewItemRSSCollection = new BindableCollection<itemRSS>();
           //  GetNewDataFromSite();
 
 
@@ -118,6 +118,17 @@ namespace RSS_reader.ViewModels
 
             var itemReader = new RssReader();
             itemReader.ReadItemsFromMultipleSources(items);
+        }
+
+        public void RestartCategories()
+        {
+            test = "";
+            NewItemRSSCollection.Clear();
+            ALotOFSelectedCategoriesSupportCollection.Clear();
+            ALotOFSelectedCategories.Clear();
+            Refresh();
+
+
         }
 
 
