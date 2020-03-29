@@ -11,9 +11,109 @@
     
     <Grid>
         <Grid.ColumnDefinitions>
-            
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="5*"/>
         </Grid.ColumnDefinitions>
-        
+
+        <Grid Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="5*"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <TextBlock Text="Wybierz Kategorie : " HorizontalAlignment="Left" Margin="5"></TextBlock>
+                <Grid>
+                    <ComboBox x:Name="categories" Margin="30" SelectedItem="{Binding Selected}">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel>
+                                    <TextBlock Text="{Binding category}"/>
+
+                                </StackPanel>
+
+                            </DataTemplate>
+
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+
+                </Grid>
+            </Grid>
+            <Grid Grid.Row="1">
+                <Button Grid.Column="1" Grid.Row="0" x:Name="NewCollection">Wyszukaj Kategorie</Button>
+            </Grid>
+            <Grid Grid.Row="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="2*"/>
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="0">
+                    <DataGrid x:Name="ALotOFSelectedCategoriesSupportCollection" CanUserAddRows="False" AutoGenerateColumns="False" Grid.Row="1" Grid.Column="1">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Wybrane Kategorie: " Binding="{Binding Path=category}"/>
+                        </DataGrid.Columns>
+                    </DataGrid> 
+
+                </Grid>
+                <Grid Grid.Column="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="2*"/>
+                        <RowDefinition Height="2*"/>
+                    </Grid.RowDefinitions>
+                    <Button x:Name="RestartCategories" Grid.Row="0" >Resetuj Kategorie</Button>
+                    <Button Grid.Row="1" x:Name="OpenWebSite">Wyswietl wybraną strone</Button>
+                </Grid>
+            </Grid>
+        </Grid>
+        <Grid Grid.Column="1">
+
+
+
+            <DataGrid x:Name="NewItemRSSCollection" SelectedItem="{Binding GuidLink}" CanUserAddRows="False" AutoGenerateColumns="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Tytuł" Binding="{Binding Title}"/>
+                    <DataGridTextColumn Header="Opis" Binding="{Binding Description}"/>
+                    <DataGridTextColumn Header="Czas Publikacji" Binding="{Binding PubDate}"/>
+                   
+                </DataGrid.Columns>
+            </DataGrid>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <!--<ComboBox x:Name="NewItemRSSCollection" SelectedItem="{Binding GuidLink}"  >
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel>
+                            <TextBlock Text="{Binding Title}" HorizontalAlignment="Left" />
+                            <TextBlock Text="{Binding NewItemRSSCollection_Title}" />
+                            <TextBlock Text="{Binding GetDatatime}" HorizontalAlignment="Right" />
+                        </StackPanel>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>-->
+            
+        </Grid>
 
     </Grid>
 </Window>
