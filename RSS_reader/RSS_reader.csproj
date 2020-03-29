@@ -140,6 +140,7 @@
     </ApplicationDefinition>
     <Compile Include="Bootstrapper.cs" />
     <Compile Include="Models\Categories.cs" />
+    <Compile Include="Tests\MongoCRUD_Tests.cs" />
     <Compile Include="Tests\TagReader_Tests.cs" />
     <Compile Include="ViewModels\ShellViewModel.cs" />
     <Compile Include="ViewModels\RelayCommand.cs" />
