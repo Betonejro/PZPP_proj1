@@ -100,6 +100,20 @@ namespace RSS_reader.Model
             return listOdRSSItem;
 
         }
+
+        public List<itemRSS> returnXRSSItems<T>(string table, int count)
+        {
+            if (count <= 0 ) throw new Exception("returnXRSSItems wrong count");
+
+            var collection = db.GetCollection<itemRSS>(table);
+            List<itemRSS> itemList = new List<itemRSS>();
+            foreach (var item in collection.Find(x => true).Limit(count).ToList())
+            {
+                itemList.Add(item);
+            }
+
+            return itemList;
+        }
         public List<string> returnAllCategoiresInMongo<T>(string table)
         {
             List<string> toReturn = new List<string>();

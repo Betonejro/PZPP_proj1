@@ -52,7 +52,7 @@ namespace RSS_reader.Model
                 }
                 
                 rssItem.Description = item.SelectSingleNode("description").InnerText;
-                rssItem.PubDate = item.SelectSingleNode("pubDate").InnerText;
+                rssItem.PubDate = GetDateFromElement(item.SelectSingleNode("pubDate").InnerText).ToString();
                 Items.Add(rssItem);
             }
 
@@ -60,6 +60,14 @@ namespace RSS_reader.Model
             Items.Clear();
         }
 
+        private DateTime GetDateFromElement(string element)
+        {
+            var time = new DateTime();
+
+            time = DateTime.Parse(element);
+
+            return time;
+        }
         public void ReadItemsFromMultipleSources(List<itemTag> tags)
         {
             foreach (var source in tags)

@@ -85,18 +85,16 @@ namespace RSS_reader.ViewModels
         public ShellViewModel()
         {
 
-            ALotOFSelectedCategoriesSupportCollection = new BindableCollection<Categories>(ALotOFSelectedCategories);
-            ItemRSSCollection = new BindableCollection<itemRSS>(mongoCRUD.returnAllRSSItems<itemRSS>("Collection"));
-            categories = new BindableCollection<Categories>(mongoCRUD.returnOnlyAllCategoiresInMongoToList<Categories>("Collection"));
-            NewItemRSSCollection = new BindableCollection<itemRSS>();
             GetNewDataFromSite();
-
+            ALotOFSelectedCategoriesSupportCollection = new BindableCollection<Categories>(ALotOFSelectedCategories);
+            categories = new BindableCollection<Categories>(mongoCRUD.returnOnlyAllCategoiresInMongoToList<Categories>("Collection"));
+            NewItemRSSCollection = new BindableCollection<itemRSS>(mongoCRUD.returnXRSSItems<itemRSS>("Collection",25));
 
         }
         List<itemRSS> returnedItemsFromDataBase = new List<itemRSS>();
         public void NewCollection()
         {
-
+            NewItemRSSCollection.Clear();
             //NewItemRSSCollection = new BindableCollection<itemRSS>(mongoCRUD.returnAllForOneCategory<itemRSS>("Collection", test));
             returnedItemsFromDataBase = mongoCRUD.returnItemRSSFindedByCategory<itemRSS>("Collection", ALotOFSelectedCategoriesInStringList);
             var returnedItems = mongoCRUD.returnItemRSSFindedByCategory<itemRSS>("Collection", ALotOFSelectedCategoriesInStringList);
@@ -153,7 +151,7 @@ namespace RSS_reader.ViewModels
         public void RestartCategories()
         {
             test = "";
-            ItemRSSCollection.Clear();
+            //ItemRSSCollection.Clear();
 
             NewItemRSSCollection.Clear();
             ALotOFSelectedCategoriesSupportCollection.Clear();
