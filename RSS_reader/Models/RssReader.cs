@@ -12,7 +12,11 @@ namespace RSS_reader.Model
 {
     class RssReader
     {
+        
         public List<itemRSS> Items = new List<itemRSS>();
+        MongoCRUD mg = new MongoCRUD("BaseOfRssItems");
+        const string itemCollection = "Collection";
+
         public void ReadItemsFromCanal(string url)
         {
             var xmlDoc = new XmlDocument();
@@ -25,11 +29,18 @@ namespace RSS_reader.Model
 
             foreach (XmlNode item in itemNodes)
             {
+                if (mg.CheckThisGuidInMongo<itemRSS>(itemCollection, item.SelectSingleNode("guid").InnerText) == true)
+                {
+                    return;
+                }
                 var rssItem = new itemRSS();
                 rssItem.Title = item.SelectSingleNode("title").InnerText;
                 rssItem.Href = item.SelectSingleNode("link").InnerText;
                 rssItem.Parent = Parent;
-                rssItem.Comments = item.SelectSingleNode("comments").InnerText;
+                if (item.SelectSingleNode("comments") != null)
+                {
+                    rssItem.Comments = item.SelectSingleNode("comments").InnerText;
+                }
                 rssItem.Guid = item.SelectSingleNode("guid").InnerText;
                 var categories = item.SelectNodes("category");
                 if (categories.Count > 0)
@@ -38,33 +49,44 @@ namespace RSS_reader.Model
                     {
                         rssItem.Categories.Add(category.InnerText);
                     }
-                  }
-                rssItem.Description = item.SelectSingleNode("description").InnerText;
-                rssItem.PubDate = item.SelectSingleNode("pubDate").InnerText;
-
-                MongoCRUD mongoCRUD = new MongoCRUD("BazaTestowa");
-                if(mongoCRUD.CheckThisGuidInMongo<itemRSS>("BazaTestowa", rssItem.Guid) != true)
-                {
-                    mongoCRUD.InsertRecord<itemRSS>("BazaTestowa", rssItem);
                 }
-
-
-               
-
                 
-
+                rssItem.Description = item.SelectSingleNode("description").InnerText;
+                rssItem.PubDate = GetDateFromElement(item.SelectSingleNode("pubDate").InnerText).ToString();
+                Items.Add(rssItem);
             }
 
-
+            SaveToDB();
+            Items.Clear();
         }
 
+        private DateTime GetDateFromElement(string element)
+        {
+            var time = new DateTime();
+
+            time = DateTime.Parse(element);
+
+            return time;
+        }
+        public void ReadItemsFromMultipleSources(List<itemTag> tags)
+        {
+            foreach (var source in tags)
+            {
+                ReadItemsFromCanal(source.Href);
+            }
+        }
 
         private string convertToJSON(itemRSS rssItem)
         {
             var sJSONResponse = JsonConvert.SerializeObject(rssItem);
             return sJSONResponse;
         }
-   
+
+        private string convertToJSONFromList(List<itemRSS> rssItem)
+        {
+            var sJSONResponse = JsonConvert.SerializeObject(rssItem);
+            return sJSONResponse;
+        }
 
         public string GetParent(string url)
         {
@@ -76,7 +98,18 @@ namespace RSS_reader.Model
             return name;
         }
 
-    
+        private void SaveToDB()
+        {
+            foreach (var item in Items)
+            {
+
+                if (mg.CheckThisGuidInMongo<itemRSS>(itemCollection, item.Guid) != true)
+                {
+                    mg.InsertRecord(itemCollection, item);
+                }
+
+            }
+        }
     }
 
 }

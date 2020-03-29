@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace RSS_reader.Model
 {
-    class itemRSS
+  public  class itemRSS
     {
         public ObjectId id { get; set; }
         public string Title { get; set; }
@@ -18,6 +18,8 @@ namespace RSS_reader.Model
         public List<string> Categories = new List<string>();
         public string Description { get; set; }
         public string PubDate { get; set; }
+
+        
       
 
         public DateTime GetDatatime()
