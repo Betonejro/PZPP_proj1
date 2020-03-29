@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using RSS_reader.Model;
 using System.Collections.ObjectModel;
+using System.Threading;
 using Caliburn.Micro;
 
 namespace RSS_reader.ViewModels
@@ -90,6 +91,8 @@ namespace RSS_reader.ViewModels
             categories = new BindableCollection<Categories>(mongoCRUD.returnOnlyAllCategoiresInMongoToList<Categories>("Collection"));
             NewItemRSSCollection = new BindableCollection<itemRSS>(MakeMeBeautiful(mongoCRUD.returnXRSSItems<itemRSS>("Collection",25)));
 
+            SynchronizeEveryXMin(5);
+
         }
         List<itemRSS> returnedItemsFromDataBase = new List<itemRSS>();
         public void NewCollection()
@@ -112,6 +115,19 @@ namespace RSS_reader.ViewModels
 
         }
 
+        private void SynchronizeEveryXMin(int time)
+        {
+            var timer = time * 60 * 1000;
+            Task task = new Task(() =>
+            {
+                while (true)
+                {
+                    GetNewDataFromSite();
+                    Thread.Sleep(timer);
+                }
+            });
+            task.Start();
+        }
         private List<itemRSS> MakeMeBeautiful(List<itemRSS> items)
         {
             var BeautyItems = items;
