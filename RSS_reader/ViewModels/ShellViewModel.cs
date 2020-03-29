@@ -89,7 +89,7 @@ namespace RSS_reader.ViewModels
             ItemRSSCollection = new BindableCollection<itemRSS>(mongoCRUD.returnAllRSSItems<itemRSS>("Collection"));
             categories = new BindableCollection<Categories>(mongoCRUD.returnOnlyAllCategoiresInMongoToList<Categories>("Collection"));
             NewItemRSSCollection = new BindableCollection<itemRSS>();
-          //  GetNewDataFromSite();
+            GetNewDataFromSite();
 
 
         }
@@ -128,9 +128,25 @@ namespace RSS_reader.ViewModels
             tagReader.ReadTags();
             List<itemTag> items = new List<itemTag>();
             items = mongoCRUD.returnAllSources<itemTag>("Sources");
-
+            var sources = GetXRandomItemsFromList(5, items);
             var itemReader = new RssReader();
-            itemReader.ReadItemsFromMultipleSources(items);
+            itemReader.ReadItemsFromMultipleSources(sources);
+        }
+
+        private List<itemTag> GetXRandomItemsFromList(int count, List<itemTag> items)
+        {
+            if (count > 0 && count <= items.Count)
+            {
+                List<itemTag> newList = new List<itemTag>();
+
+                newList = items.OrderBy(x => Guid.NewGuid()).Take(count).ToList();
+
+                return newList;
+            }
+            else
+            {
+                throw new Exception("GetXRandomitemsFromList wrong count !");
+            }
         }
 
         public void RestartCategories()
