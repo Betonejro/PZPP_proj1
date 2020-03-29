@@ -13,8 +13,8 @@ namespace RSS_reader.ViewModels
     {
         MongoCRUD mongoCRUD = new MongoCRUD("BaseOfRssItems");
         Categories SimplyCategory = new Categories();
-        string test="Internet";
-        string guid = "https://media2.pl/l/n/153525";
+        string test="";
+        string guid = "";
 
 
 
@@ -23,6 +23,9 @@ namespace RSS_reader.ViewModels
         public BindableCollection<itemRSS> NewItemRSSCollection { get; set; }
 
         public BindableCollection<itemRSS> ItemRSSToShow { get; set; }
+        public List<Categories> ALotOFSelectedCategories = new List<Categories>();
+        public List<string> ALotOFSelectedCategoriesInStringList= new List<string>();
+        public BindableCollection<Categories> ALotOFSelectedCategoriesSupportCollection { get; set; }
         private Categories _selected;
         private itemRSS _guidLink;
 
@@ -51,8 +54,17 @@ namespace RSS_reader.ViewModels
             {
                 _selected = value;
                 test = value.category;
-                
-               
+                ALotOFSelectedCategories.Add(new Categories { category=value.category });
+                ALotOFSelectedCategoriesInStringList.Add(value.category);
+                if (value == null)
+                {
+
+                }
+                else
+                    ALotOFSelectedCategoriesSupportCollection.Add(new Categories { category = value.category });
+
+
+
                 NotifyOfPropertyChange(() => Selected);
             }
         }
@@ -72,23 +84,26 @@ namespace RSS_reader.ViewModels
 
         public ShellViewModel()
         {
-         
-            
+
+            ALotOFSelectedCategoriesSupportCollection = new BindableCollection<Categories>(ALotOFSelectedCategories);
             ItemRSSCollection = new BindableCollection<itemRSS>(mongoCRUD.returnAllRSSItems<itemRSS>("Collection"));
             categories = new BindableCollection<Categories>(mongoCRUD.returnOnlyAllCategoiresInMongoToList<Categories>("Collection"));
             NewItemRSSCollection = new BindableCollection<itemRSS>(mongoCRUD.returnAllForOneCategory<itemRSS>("Collection", test));
-            GetNewDataFromSite();
+          //  GetNewDataFromSite();
 
 
         }
+      
         public void NewCollection()
         {
-           
-            NewItemRSSCollection = new BindableCollection<itemRSS>(mongoCRUD.returnAllForOneCategory<itemRSS>("Collection", test));
 
+            //NewItemRSSCollection = new BindableCollection<itemRSS>(mongoCRUD.returnAllForOneCategory<itemRSS>("Collection", test));
+            NewItemRSSCollection = new BindableCollection<itemRSS>(mongoCRUD.returnItemRSSFindedByCategory<itemRSS>("Collection", ALotOFSelectedCategoriesInStringList));
             Refresh();
-            
          
+
+
+
         }
         public void OpenWebSite()
         {

@@ -20,8 +20,8 @@
         </Grid.ColumnDefinitions>
         <!--Row 0-->
         <Grid>
-            
-            <ComboBox x:Name="categories" MaxWidth="250" MaxHeight="250" HorizontalAlignment="Left" SelectedItem="{Binding Selected}" Grid.Column="0" Grid.Row="0">
+            <TextBlock HorizontalAlignment="Left" Grid.Column="0" Grid.Row="0" Text="Wybierz kategorie: "/>
+            <ComboBox x:Name="categories" MinHeight="50" MinWidth="100" MaxWidth="500" MaxHeight="300" HorizontalAlignment="Center" SelectedItem="{Binding Selected}" Grid.Column="0" Grid.Row="0">
                 <ComboBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel>
@@ -35,10 +35,10 @@
             </ComboBox>
       
         </Grid>
-        
 
 
-        <ComboBox x:Name="NewItemRSSCollection" Grid.Column="0" Grid.Row="1" SelectedItem="{Binding GuidLink}" >
+        <TextBlock HorizontalAlignment="Center" Grid.Column="0" Grid.Row="1" Text="Wybierz Strone: " Margin="50"/>
+        <ComboBox x:Name="NewItemRSSCollection" MaxWidth="500" MaxHeight="500" MinHeight="270" MinWidth="300" HorizontalAlignment="Center" VerticalAlignment="Bottom" Grid.Column="0" Grid.Row="1" SelectedItem="{Binding GuidLink}"  >
             <ComboBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel>
@@ -49,8 +49,13 @@
                 </DataTemplate>
             </ComboBox.ItemTemplate>
         </ComboBox>
-        <Button Grid.Column="0" Grid.Row="0" x:Name="NewCollection" HorizontalAlignment="Right" MaxWidth="150" MaxHeight="150"> Aktualizuj</Button>
-        <Button Grid.Column="0" Grid.Row="1" x:Name="OpenWebSite" HorizontalAlignment="Right" MaxWidth="150" MaxHeight="150">Wyswietl</Button>
+        <Button Grid.Column="1" Grid.Row="0" x:Name="NewCollection" HorizontalAlignment="Left" MaxWidth="250" MaxHeight="150"> Aktualizuj wyszukiwanie o nowe kategorie</Button>
+        <Button Grid.Column="1" Grid.Row="0" x:Name="OpenWebSite" HorizontalAlignment="Right" MaxWidth="150" MaxHeight="150">Wyswietl wybraną strone </Button>
+        <DataGrid x:Name="ALotOFSelectedCategoriesSupportCollection" CanUserAddRows="False" AutoGenerateColumns="False" Grid.Row="1" Grid.Column="1">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Wybrane Kategorie: " Binding="{Binding Path=category}"/>
+            </DataGrid.Columns>
+        </DataGrid>
 
     </Grid>
 </Window>
