@@ -98,7 +98,14 @@ namespace RSS_reader.ViewModels
         {
 
             //NewItemRSSCollection = new BindableCollection<itemRSS>(mongoCRUD.returnAllForOneCategory<itemRSS>("Collection", test));
-            NewItemRSSCollection = new BindableCollection<itemRSS>(mongoCRUD.returnItemRSSFindedByCategory<itemRSS>("Collection", ALotOFSelectedCategoriesInStringList));
+            var returnedItems = mongoCRUD.returnItemRSSFindedByCategory<itemRSS>("Collection", ALotOFSelectedCategoriesInStringList);
+            foreach (var item in returnedItems)
+            {
+                item.PubDate = item.GetDatatime().ToString();
+                item.Description = item.GetDescriptionText();
+            }
+            //NewItemRSSCollection = new BindableCollection<itemRSS>(mongoCRUD.returnItemRSSFindedByCategory<itemRSS>("Collection", ALotOFSelectedCategoriesInStringList));
+            NewItemRSSCollection = new BindableCollection<itemRSS>(returnedItems);
             Refresh();
          
 
