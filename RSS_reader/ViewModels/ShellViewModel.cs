@@ -93,19 +93,20 @@ namespace RSS_reader.ViewModels
 
 
         }
-      
+        List<itemRSS> returnedItemsFromDataBase = new List<itemRSS>();
         public void NewCollection()
         {
 
             //NewItemRSSCollection = new BindableCollection<itemRSS>(mongoCRUD.returnAllForOneCategory<itemRSS>("Collection", test));
+            returnedItemsFromDataBase = mongoCRUD.returnItemRSSFindedByCategory<itemRSS>("Collection", ALotOFSelectedCategoriesInStringList);
             var returnedItems = mongoCRUD.returnItemRSSFindedByCategory<itemRSS>("Collection", ALotOFSelectedCategoriesInStringList);
-            foreach (var item in returnedItems)
+            foreach (var item in returnedItemsFromDataBase)
             {
                 item.PubDate = item.GetDatatime().ToString();
                 item.Description = item.GetDescriptionText();
             }
             //NewItemRSSCollection = new BindableCollection<itemRSS>(mongoCRUD.returnItemRSSFindedByCategory<itemRSS>("Collection", ALotOFSelectedCategoriesInStringList));
-            NewItemRSSCollection = new BindableCollection<itemRSS>(returnedItems);
+            NewItemRSSCollection = new BindableCollection<itemRSS>(returnedItemsFromDataBase);
             Refresh();
          
 
@@ -152,9 +153,14 @@ namespace RSS_reader.ViewModels
         public void RestartCategories()
         {
             test = "";
+            ItemRSSCollection.Clear();
+
             NewItemRSSCollection.Clear();
             ALotOFSelectedCategoriesSupportCollection.Clear();
             ALotOFSelectedCategories.Clear();
+            returnedItemsFromDataBase.Clear();
+            ALotOFSelectedCategoriesInStringList.Clear();
+
             Refresh();
 
 
