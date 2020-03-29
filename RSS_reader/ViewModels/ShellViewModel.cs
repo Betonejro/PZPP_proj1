@@ -137,6 +137,11 @@ namespace RSS_reader.ViewModels
 
         }
 
+        public void OpenThisSite()
+        {
+            System.Diagnostics.Process.Start(guid);
+        }
+
 
     }
 }
